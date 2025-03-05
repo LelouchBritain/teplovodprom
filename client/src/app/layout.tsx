@@ -6,6 +6,7 @@ import { Layout, Breadcrumb, theme } from "antd";
 import "./globals.css";
 import MainHeader from "@/components/MainHeader";
 import MainMenu from "@/components/MainMenu";
+import "antd/dist/reset.css";
 
 const { Content } = Layout;
 
