@@ -10,16 +10,22 @@ const Logo: React.FC = () => {
     router.push("/");
   };
 
+  const myFontStyle = {
+    fontFamily: "FlaviusUniversal",
+  };
+
   return (
     <>
-      <Flex align="center" gap={10}>
-        <Image src="/logo.png" alt="Logo" width={30} />
+      <Flex align="center" gap={6}>
+        <Image src="/logo.svg" alt="Logo" width={40} />
         <Title
-          style={{ color: "lightpink", margin: "0", cursor: "pointer" }}
+          style={{ margin: "0", cursor: "pointer" }}
           level={4}
           onClick={handleClick}
         >
-          ТЕПЛОВОДПРОМ
+          <span style={{ color: "#F66540", ...myFontStyle }}>ТЕПЛО</span>
+          <span style={{ color: "#17C9F5", ...myFontStyle }}>ВОД</span>
+          <span style={{ color: "#C4C4C4", ...myFontStyle }}>ПРОМ</span>
         </Title>
       </Flex>
     </>

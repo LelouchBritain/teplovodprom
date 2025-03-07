@@ -1,12 +1,11 @@
 "use client";
 import React from "react";
-import { Layout, Breadcrumb, theme } from "antd";
+import { Layout, theme } from "antd";
 // import { store } from "@/store/store";
 // import { Provider } from "react-redux";
 import "./globals.css";
-import MainHeader from "@/components/MainHeader";
+import MainHeader from "@/components/header/MainHeader";
 import MainMenu from "@/components/MainMenu";
-import "antd/dist/reset.css";
 
 const { Content } = Layout;
 
@@ -27,10 +26,6 @@ export default function RootLayout({
           <Layout>
             <MainMenu />
             <Layout style={{ padding: "0 24px 24px" }}>
-              <Breadcrumb
-                items={[{ title: "Home" }, { title: "List" }, { title: "App" }]}
-                style={{ margin: "16px 0" }}
-              />
               <Content
                 style={{
                   padding: 24,

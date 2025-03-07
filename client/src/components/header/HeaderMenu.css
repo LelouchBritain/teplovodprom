@@ -1,0 +1,22 @@
+.popover {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.popover-title {
+  margin-left: 2px;
+  margin-bottom: 6px;
+}
+
+.popover p {
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.popover p:hover {
+  background-color: rgb(252, 247, 224);
+  cursor: pointer;
+}

@@ -1,47 +1,64 @@
 import { AppstoreOutlined } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd";
 import Sider from "antd/es/layout/Sider";
+import styled from "styled-components";
 
-type MenuItem = Required<MenuProps>["items"][number];
+const CustomMenu = styled(Menu)`
+  width: 200;
+  background-color: #fbf9f6 !important;
+  .ant-menu-item {
+    color: rgb(0, 0, 0) !important; // Цвет текста
+  }
+  .ant-menu-item:active {
+    background-color: #f7e5b7 !important; // Цвет при наведении
+  }
+  /* Стили для активного (выбранного) элемента */
+  .ant-menu-item-selected {
+    background-color: #f7eedd !important; /* Новый цвет фона */
+    color: black !important; /* Цвет текста */
+  }
+  /* Изменяем цвет активного заголовка (например, "Оборудование") */
+  .ant-menu-submenu-selected > .ant-menu-submenu-title {
+    color: black !important; /* Цвет текста */
+  }
+`;
+
+export type MenuItem = Required<MenuProps>["items"][number];
+
+export const techObj = {
+  key: "subTech",
+  label: "Оборудование",
+  children: [
+    { key: "pumpStations", label: "Насосные станции" },
+    {
+      key: "gPumps",
+      label: "Насосы",
+      type: "group",
+      children: [
+        { key: "pump1", label: "Скважинные" },
+        { key: "pump2", label: "Поверхностные" },
+      ],
+    },
+    { key: "divider1", type: "divider" },
+    {
+      key: "gFans",
+      label: "Вентиляторы",
+      type: "group",
+      children: [
+        { key: "fan1", label: "Радиальные" },
+        { key: "fan2", label: "Осевые" },
+      ],
+    },
+    { key: "divider2", type: "divider" },
+    { key: "stoves", label: "Котлы" },
+    { key: "compressors", label: "Компрессоры" },
+    { key: "controlPanels", label: "Шкафы управления" },
+    { key: "freqConverters", label: "Частотные преобразователи" },
+  ],
+};
 
 const items: MenuItem[] = [
-  {
-    key: "subTech",
-    label: "Оборудование",
-    children: [
-      { key: "pumpStations", label: "Насосные станции" },
-      {
-        key: "gPumps",
-        label: "Насосы",
-        type: "group",
-        children: [
-          { key: "pump1", label: "Скважинные" },
-          { key: "pump2", label: "Поверхностные" },
-        ],
-      },
-      {
-        key: "gFans",
-        label: "Вентиляторы",
-        type: "group",
-        children: [
-          { key: "fan1", label: "Радиальные" },
-          { key: "fan2", label: "Осевые" },
-        ],
-      },
-      {
-        key: "gStoves",
-        label: "Котлы",
-        type: "group",
-        children: [
-          { key: "stove1", label: "Настенные" },
-          { key: "stove2", label: "Напольные" },
-        ],
-      },
-      { key: "compressors", label: "Компрессоры" },
-      { key: "controlPanels", label: "Шкафы управления" },
-      { key: "freqConverters", label: "Частотные преобразователи" },
-    ],
-  },
+  techObj,
   {
     key: "subComponents",
     label: "Комплектующие",
@@ -55,15 +72,6 @@ const items: MenuItem[] = [
   {
     type: "divider",
   },
-  {
-    key: "others",
-    type: "group",
-    children: [
-      { key: "delivery", label: "Оплата и доставка" },
-      { key: "about", label: "О компании" },
-      { key: "contacts", label: "Контакты" },
-    ],
-  },
 ];
 
 const MainMenu: React.FC = () => {
@@ -71,10 +79,9 @@ const MainMenu: React.FC = () => {
     console.log("click ", e);
   };
   return (
-    <Sider width={200} style={{ background: "darkblue", marginTop: "80px" }}>
-      <Menu
+    <Sider width={200} style={{ background: "#fbf9f6", marginTop: "80px" }}>
+      <CustomMenu
         onClick={onClick}
-        style={{ width: 200 }}
         defaultSelectedKeys={["pumpStations"]}
         defaultOpenKeys={["subTech"]}
         mode="inline"
