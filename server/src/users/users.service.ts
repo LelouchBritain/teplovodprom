@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { SignInUserDto } from './dto/sign-in-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -62,7 +62,10 @@ export class UsersService {
 
   async getUserByToken(token: string) {
     const user = await this.usersRepository.findOne({ where: { token } });
-    console.log(user);
+
+    if (!user) {
+      throw new UnauthorizedException('Неверный токен');
+    }
 
     return user;
   }

@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import { Layout, theme } from "antd";
-// import { store } from "@/store/store";
-// import { Provider } from "react-redux";
-import "./globals.css";
 import MainHeader from "@/components/header/MainHeader";
 import MainMenu from "@/components/MainMenu";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "@/store/hooks";
+import "./globals.css";
 
 const { Content } = Layout;
 
@@ -20,7 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* <Provider store={store}> */}
+        <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
         <Layout>
           <MainHeader />
           <Layout>
@@ -30,6 +32,7 @@ export default function RootLayout({
                 style={{
                   padding: 24,
                   margin: 0,
+                  marginTop: 80,
                   minHeight: "95vh",
                   background: colorBgContainer,
                   borderRadius: borderRadiusLG,
@@ -40,7 +43,8 @@ export default function RootLayout({
             </Layout>
           </Layout>
         </Layout>
-        {/* </Provider> */}
+        </PersistGate>
+        </Provider>
       </body>
     </html>
   );

@@ -51,7 +51,6 @@ export class UsersController {
       return;
     }
 
-    console.log(headers);
 
     const user = await this.usersService.getUserByToken(headers.authorization);
 

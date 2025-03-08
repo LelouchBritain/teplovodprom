@@ -1,5 +1,5 @@
 "use client";
-import { Button, ConfigProvider, Flex, Input } from "antd";
+import { ConfigProvider, Flex, Input } from "antd";
 import { Header } from "antd/es/layout/layout";
 import Link from "antd/es/typography/Link";
 import { SearchProps } from "antd/es/input/Search";
@@ -12,6 +12,9 @@ import {
 import styled from "styled-components";
 import Logo from "../Logo";
 import HeaderMenu from "./HeaderMenu";
+import { useAppSelector } from "@/store/hooks";
+import { GuestMenu } from "./GuestMenu";
+import { UserMenu } from "./UserMenu";
 
 const myBgColor = "#edf2fb";
 
@@ -41,18 +44,10 @@ const CustomSearch = styled(Search)`
   }
 `;
 
-const CustomBtn = styled(Button)`
-  && {
-    color: black !important; /* Цвет текста в кнопке */
-    background-color: #fcd29f !important; /* Фон кнопки */
-  }
-  &&:hover {
-    color: black !important;
-    background-color: rgb(239, 199, 151) !important; /* Фон кнопки */
-  }
-`;
-
 const MainHeader: React.FC = () => {
+  const { user } = useAppSelector((state) => state.user);
+  console.log(user);
+
   const onSearch: SearchProps["onSearch"] = (value, _e, info) =>
     console.log(info?.source, value);
   return (
@@ -103,8 +98,7 @@ const MainHeader: React.FC = () => {
                   <MailOutlined /> info@teplovodprom.kz
                 </Typography>
               </Flex>
-
-              <CustomBtn type="primary">Заказать звонок</CustomBtn>
+              {!user ? <GuestMenu /> : <UserMenu />}
             </Flex>
           </Flex>
         </div>

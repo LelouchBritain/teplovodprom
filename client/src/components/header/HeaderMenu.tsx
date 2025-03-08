@@ -5,7 +5,7 @@ import "./HeaderMenu.css";
 
 const styleAlign = { display: "flex", justifyContent: "center" };
 
-const CustomMenu = styled(Menu)`
+export const CustomMenu = styled(Menu)`
   max-width: 30%;
   display: flex;
   justify-content: center;
